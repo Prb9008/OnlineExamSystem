@@ -3,12 +3,29 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+    path: 'login',
+    loadChildren: () => import('./modules/auth/login/login.module').then(m => m.LoginPageModule)
+  },
+  {
+    path: 'signup',
+    loadChildren: () => import('./modules/auth/signup/signup.module').then(m => m.SignupPageModule)
+  },
+  {
+    path: 'forgot-password',
+    loadChildren: () => import('./modules/auth/forgot-password/forgot-password.module').then(m => m.ForgotPasswordPageModule)
+  },
+  {
+    path: 'reset-password',
+    loadChildren: () => import('./modules/auth/reset-password/reset-password.module').then(m => m.ResetPasswordPageModule)
+  },
+
+  {
+    path: 'dashboard',
+    loadChildren: () => import('./modules/dashboard/dashboard/dashboard.module').then(m => m.DashboardPageModule)
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
 ];
@@ -19,4 +36,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

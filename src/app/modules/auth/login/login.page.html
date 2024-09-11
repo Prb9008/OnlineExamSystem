@@ -1,0 +1,92 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      <ion-icon src="assets/exam.svg"></ion-icon>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="studysvg">
+    <ion-icon class="study" src="assets/study.svg"></ion-icon>
+  </div>
+  
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" size-md="8" size-lg="6">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Sign-In</ion-card-title>
+          </ion-card-header>
+
+          <ion-card-header>
+            <div class="card-subtitle">
+              <ion-card-title>Hello,</ion-card-title>
+              <ion-card-title>Welcome Back !!!</ion-card-title>
+            </div>
+          </ion-card-header>
+
+          <ion-card-content>
+            <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+              <ion-list class="colordev">
+                <ion-item>
+                  <ion-input
+                    placeholder="Enter Username"
+                    label="Username"
+                    labelPlacement="floating"
+                    formControlName="username"
+                  ></ion-input>
+                </ion-item>
+                <ion-note color="danger" *ngIf="loginForm.get('username')?.invalid && loginForm.get('username')?.touched">
+                  Username is required.
+                </ion-note>
+                <ion-item>
+                  <ion-input
+                    label="Password"
+                    type="password"
+                    placeholder="Enter Password"
+                    labelPlacement="floating"
+                    formControlName="password"
+                  ></ion-input>
+                </ion-item>
+                <ion-note color="danger" *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+                  Password is required.
+                </ion-note>
+              </ion-list>
+
+              <!-- Forgot Password link added here -->
+              <div class="ion-text-end ion-margin-top">
+                <ion-button fill="clear" size="small" color="medium" (click)="goToForgotPassword()">
+                  Forgot Password?
+                </ion-button>
+              </div>
+
+              <div class="button-group">
+                <ion-button type="submit" color="primary" expand="block">Login</ion-button>
+                <ion-button fill="outline" color="medium" expand="block" (click)="goToSignup()">Sign Up</ion-button>
+              </div>
+            </form>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- Modal for Alerts -->
+  <ion-modal [isOpen]="isModalOpen" (ionModalDidDismiss)="closeModal()">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Error</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="closeModal()">Close</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <p>{{ modalMessage }}</p>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+</ion-content>

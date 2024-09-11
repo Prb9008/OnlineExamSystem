@@ -1,0 +1,71 @@
+ion-header ion-toolbar {
+   --background: #9888ff;
+   --color: black;
+ }
+ 
+ ion-content {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   position: relative;
+ }
+ 
+ .studysvg {
+   position: absolute;
+   
+ }
+ 
+ .study {
+   padding-left: 750px;
+  width: 650px;
+  height: 650px;
+ }
+ 
+ ion-title ion-icon {
+   width: 50px;
+   height: 50px;
+ }
+ 
+ ion-item {
+   --highlight-height: 2px;
+   --highlight-color-focused: red;
+   --background: transparent;
+ }
+ 
+ ion-list ion-item {
+   --background: #bfb9e8;
+   --color: black;
+   padding: 20px;
+ }
+ 
+ .colordev {
+   background-color: #bfb9e8;
+ }
+ 
+ .card-subtitle {
+   text-align: center;
+   font-family: "Roboto";
+   font-weight: 200;
+   padding-bottom: 20px;
+ }
+ 
+ ion-card {
+   --background: #bfb9e8;
+   max-width: 570px;
+   width: 100%;
+   flex-shrink: 0;
+   border-radius: 30px;
+   border: 1px solid #646178;
+   font-family: "Roboto", sans-serif;
+   font-weight: 300;
+   padding: 40px;
+   z-index: 2;
+ }
+ 
+ .button-group {
+   display: flex;
+   flex-direction: column;
+   gap: 15px;
+   margin-top: 20px;
+ }
+ 

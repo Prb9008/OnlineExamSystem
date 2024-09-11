@@ -1,0 +1,15 @@
+{
+   "env": {
+     "node": true,
+     "es6": true
+   },
+   "parserOptions": {
+     "ecmaVersion": 2018
+   },
+   "rules": {
+     "no-const-assign": "error",
+     "no-var": "error",
+     "prefer-const": "error"
+   }
+ }
+ 
