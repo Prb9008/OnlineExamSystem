@@ -21,12 +21,16 @@ const routes: Routes = [
 
   {
     path: 'dashboard',
-    loadChildren: () => import('./modules/dashboard/dashboard/dashboard.module').then(m => m.DashboardPageModule)
+    loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardPageModule)
   },
   {
     path: '',
     redirectTo: 'login',
     pathMatch: 'full'
+  },
+  {
+    path: 'profile',
+    loadChildren: () => import('./modules/profile/profile.module').then( m => m.ProfilePageModule)
   },
 ];
 

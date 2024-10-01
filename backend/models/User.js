@@ -11,7 +11,10 @@ const createUserTable = () => {
       email VARCHAR(100) UNIQUE,
       resetToken VARCHAR(100),
       resetTokenExpires DATETIME,
-      role VARCHAR(20) DEFAULT 'user'
+      role VARCHAR(20) DEFAULT 'user',
+      mobile_number VARCHAR(15),
+      education VARCHAR(100),
+      profile_picture VARCHAR(255)
     )
   `;
   db.query(query, (err) => {
@@ -57,8 +60,22 @@ const User = {
   },
 
   updatePassword: (id, password, callback) => {
-    const query = `UPDATE Users SET password = ?, resetToken = NULL, resetTokenExpires = NULL WHERE id = ?`;
-    db.query(query, [password, id], callback);
+    bcrypt.hash(password, 10, (err, hash) => {
+      if (err) throw err;
+      const query = `UPDATE Users SET password = ?, resetToken = NULL, resetTokenExpires = NULL WHERE id = ?`;
+      db.query(query, [hash, id], callback);
+    });
+  },
+
+  // New method for updating user profile
+  updateProfile: (id, data, callback) => {
+    const { mobile_number, education, role, profile_picture } = data;
+    const query = `
+      UPDATE Users 
+      SET mobile_number = ?, education = ?, role = ?, profile_picture = ? 
+      WHERE id = ?
+    `;
+    db.query(query, [mobile_number, education, role, profile_picture, id], callback);
   }
 };
 

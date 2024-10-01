@@ -5,6 +5,7 @@ const Otp = require('../models/Otp');
 const bcrypt = require('bcryptjs');
 const nodemailer = require('nodemailer');
 const crypto = require('crypto');
+const multer = require('multer');  // For profile picture uploads
 require('dotenv').config();
 
 const router = express.Router();
@@ -139,6 +140,41 @@ router.post('/reset-password', (req, res) => {
         res.json({ message: 'Password updated successfully' });
       });
     });
+  });
+});
+
+// Profile management (new)
+router.post('/profile', upload.single('profile_picture'), (req, res) => {
+  const userId = req.user.id;
+  const { mobile_number, education, role } = req.body;
+  const profile_picture = req.file ? req.file.path : null;
+
+  User.updateProfile(userId, { mobile_number, education, role, profile_picture }, (err) => {
+    if (err) return res.status(500).json({ error: 'Failed to update profile' });
+    res.json({ message: 'Profile updated successfully' });
+  });
+});
+
+router.get('/profile', (req, res) => {
+  const userId = req.user.id;
+  User.findById(userId, (err, user) => {
+    if (err) return res.status(500).json({ error: 'Failed to fetch user profile' });
+    res.json(user);
+  });
+});
+
+// Dashboard (new)
+router.get('/dashboard', (req, res) => {
+  const userId = req.user.id;
+
+  const query = `
+    SELECT COUNT(*) AS testsTaken, AVG(score) AS averageScore 
+    FROM Results WHERE user_id = ?
+  `;
+
+  db.query(query, [userId], (err, results) => {
+    if (err) return res.status(500).json({ error: 'Failed to fetch stats' });
+    res.json(results[0]);
   });
 });
 

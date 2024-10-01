@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>User Profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+    <ion-item>
+      <ion-label position="floating">Mobile Number</ion-label>
+      <ion-input formControlName="mobile_number"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Education</ion-label>
+      <ion-input formControlName="education"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Role</ion-label>
+      <ion-select formControlName="role">
+        <ion-select-option value="student">Student</ion-select-option>
+        <ion-select-option value="teacher">Teacher</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Profile Picture</ion-label>
+      <input type="file" (change)="onFileChange($event)">
+    </ion-item>
+
+    <ion-button expand="block" type="submit">Update Profile</ion-button>
+  </form>
+</ion-content>

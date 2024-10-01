@@ -4,13 +4,15 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="ion-padding">
   <ion-card>
     <ion-card-header>
-      <ion-card-title>Welcome to the Dashboard</ion-card-title>
+      <ion-card-title>User Statistics</ion-card-title>
     </ion-card-header>
+
     <ion-card-content>
-      Here you can manage your profile, take tests, and more.
+      <p>Number of Tests Taken: {{ userStats?.testsTaken }}</p>
+      <p>Average Score: {{ userStats?.averageScore }}%</p>
     </ion-card-content>
   </ion-card>
 </ion-content>
